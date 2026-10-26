@@ -1,0 +1,308 @@
+/* ========== 联系我：CONTACT ME，流式自适应布局 ========== */
+/* 素材均为真透明 PNG：01-background 全屏铺底，其余直接叠放 */
+
+#page-contact {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  background: #040a24;
+  font-family: 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+}
+
+.ct-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+}
+
+.ct-container {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: calc(clamp(56px, 8vh, 96px) + 40px) clamp(36px, 7vw, 130px) clamp(28px, 4vh, 48px);
+}
+
+/* ---------- 顶部标题区 ---------- */
+.ct-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.ct-title {
+  margin: 0;
+  font-family: 'Montserrat', 'Arial Black', sans-serif;
+  font-style: italic;
+  font-weight: 900;
+  font-size: clamp(40px, 5.6vw, 92px);
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  text-shadow: 0 6px 30px rgba(0, 0, 0, 0.45);
+}
+
+.ct-sub {
+  margin: 10px 0 0;
+  font-size: clamp(15px, 1.4vw, 21px);
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  color: #ffffff;
+}
+
+.ct-head-right {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 1.6vw, 22px);
+  flex-shrink: 0;
+  padding-top: 8px;
+}
+
+.ct-geo {
+  width: clamp(60px, 6.5vw, 110px);
+  height: auto;
+  mix-blend-mode: screen;
+}
+
+.ct-num {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-style: italic;
+  font-size: clamp(13px, 1.3vw, 17px);
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.75);
+  white-space: nowrap;
+}
+
+.ct-num em {
+  font-style: italic;
+  font-weight: 800;
+  font-size: 1.25em;
+  color: #b9a6f2;
+}
+
+.ct-num span {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+/* ---------- 主区：左右两栏 ---------- */
+.ct-main {
+  display: flex;
+  align-items: stretch;
+  gap: clamp(28px, 4vw, 72px);
+  margin-top: clamp(28px, 5.5vh, 64px);
+  flex: 1;
+  min-height: 0;
+}
+
+.ct-left {
+  flex: 0 0 42%;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.ct-headline {
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 10px 32px rgba(20, 10, 80, 0.55));
+}
+
+.ct-note {
+  margin: clamp(14px, 2.2vh, 24px) 0 0;
+  font-size: clamp(14px, 1.25vw, 18px);
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.ct-envelope {
+  width: 100%;
+  max-width: 640px;
+  height: auto;
+  margin-top: clamp(16px, 3vh, 36px);
+  align-self: flex-start;
+  transform: translateX(-4%);
+  filter: drop-shadow(0 18px 50px rgba(10, 5, 60, 0.6));
+  pointer-events: none;
+}
+
+/* ---------- 右侧联系面板 ---------- */
+.ct-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0;
+  background: linear-gradient(160deg, rgba(16, 24, 58, 0.55) 0%, rgba(7, 11, 32, 0.72) 100%);
+  border: 1px solid rgba(126, 140, 255, 0.22);
+  border-radius: 16px;
+  padding: clamp(18px, 2.6vh, 32px) clamp(20px, 2.6vw, 40px);
+  backdrop-filter: blur(6px);
+}
+
+.ct-row {
+  display: flex;
+  align-items: center;
+  gap: clamp(14px, 1.6vw, 24px);
+  padding: clamp(14px, 2.4vh, 26px) 0;
+}
+
+.ct-row + .ct-row {
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.ct-icon {
+  width: clamp(52px, 5vw, 76px);
+  height: clamp(52px, 5vw, 76px);
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: drop-shadow(0 6px 18px rgba(90, 60, 220, 0.35));
+}
+
+.ct-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.ct-label {
+  font-size: clamp(12px, 1.1vw, 15px);
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.55);
+  font-weight: 600;
+}
+
+.ct-label span {
+  color: #a48ef0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.92em;
+}
+
+.ct-value {
+  margin-top: 6px;
+  font-size: clamp(17px, 1.7vw, 24px);
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ct-copy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(36px, 3.2vw, 46px);
+  height: clamp(36px, 3.2vw, 46px);
+  flex-shrink: 0;
+  background: rgba(139, 108, 240, 0.08);
+  border: 1px solid rgba(139, 108, 240, 0.45);
+  border-radius: 12px;
+  color: #c3b2f5;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.ct-copy svg {
+  width: 46%;
+  height: 46%;
+}
+
+.ct-copy:hover {
+  background: rgba(139, 108, 240, 0.28);
+  border-color: rgba(170, 145, 255, 0.75);
+  color: #ffffff;
+}
+
+.ct-copy.copied {
+  background: rgba(90, 220, 160, 0.2);
+  border-color: rgba(90, 220, 160, 0.6);
+  color: #7ef0b8;
+}
+
+/* ---------- 发邮件按钮 ---------- */
+.ct-mail-btn {
+  display: block;
+  margin-top: clamp(18px, 3vh, 34px);
+  border-radius: 14px;
+  overflow: hidden;
+  line-height: 0;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.ct-mail-btn img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.ct-mail-btn:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.12);
+}
+
+/* ---------- 底部页脚 ---------- */
+.ct-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: clamp(24px, 4vh, 48px);
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.ct-footer .ct-num {
+  font-size: 13px;
+}
+
+.ct-footer .ct-num em {
+  font-size: 17px;
+}
+
+.ct-thanks {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(11px, 1vw, 14px);
+  letter-spacing: 0.22em;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* ---------- 响应式 ---------- */
+@media (max-width: 960px) {
+  .ct-main {
+    flex-direction: column;
+    gap: 32px;
+  }
+  .ct-left {
+    flex: none;
+  }
+  .ct-envelope {
+    margin-top: 20px;
+    max-width: 520px;
+    transform: none;
+  }
+  .ct-panel {
+    flex: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .ct-head {
+    flex-direction: column;
+  }
+  .ct-head-right {
+    padding-top: 0;
+  }
+  .ct-value {
+    white-space: normal;
+  }
+}

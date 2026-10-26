@@ -1,0 +1,269 @@
+/* ========== 关于我：1672×941 原始画布，等比缩放 ========== */
+
+#page-about {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #05060f;
+  position: relative;
+}
+
+/* 全屏氛围背景：同一张图铺满视口并压暗虚化，
+   让中央画布的边缘自然融入，消除左右生硬切边 */
+.about-ambient {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.about-ambient img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: blur(26px) brightness(0.62) saturate(0.85);
+  transform: scale(1.08);
+}
+
+.about-ambient::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 80% at 50% 50%,
+    rgba(5, 6, 15, 0.05) 0%,
+    rgba(5, 6, 15, 0.38) 62%,
+    rgba(5, 6, 15, 0.78) 100%);
+}
+
+.about-stage {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 1672px;
+  height: 941px;
+  transform-origin: center center;
+  transform: translate(-50%, -50%);
+  background: transparent;
+  overflow: hidden;
+  font-family: 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+  z-index: 1;
+}
+
+.about-stage img {
+  position: absolute;
+  display: block;
+}
+
+/* 第 1 层：背景 (0, 0) 1672×941，边缘大范围羽化，完全融入氛围背景 */
+.about-bg {
+  left: 0;
+  top: 0;
+  width: 1672px;
+  height: 941px;
+  -webkit-mask-image: radial-gradient(ellipse 72% 72% at 50% 50%, #000 38%, transparent 80%);
+  mask-image: radial-gradient(ellipse 72% 72% at 50% 50%, #000 38%, transparent 80%);
+}
+
+/* 第 2 层：人物 + 工作室 (780, 70) 892×556，右缘同步羽化避免竖向硬边 */
+.about-person {
+  left: 780px;
+  top: 70px;
+  width: 892px;
+  height: 556px;
+  -webkit-mask-image: linear-gradient(to right, #000 80%, rgba(0, 0, 0, 0) 99%);
+  mask-image: linear-gradient(to right, #000 80%, rgba(0, 0, 0, 0) 99%);
+}
+
+/* 第 3 层：导航 */
+.about-header {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 84px;
+  z-index: 5;
+}
+
+.about-logo {
+  font-family: 'Montserrat', 'Arial Black', sans-serif;
+  font-style: italic;
+  font-weight: 900;
+  font-size: 26px;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+}
+
+.about-nav {
+  display: flex;
+  gap: 46px;
+}
+
+.about-nav a {
+  position: relative;
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: none;
+  font-size: 17px;
+  letter-spacing: 0.05em;
+  transition: color 0.3s;
+}
+
+.about-nav a:hover {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.about-nav a.active {
+  color: #ffffff;
+}
+
+.about-nav a.active::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -10px;
+  width: 28px;
+  height: 2px;
+  background: #8b6cf0;
+  border-radius: 2px;
+}
+
+/* 第 4 层：ABOUT ME 标题原图 (90, 186) 690×126 */
+.about-title {
+  left: 90px;
+  top: 186px;
+  width: 690px;
+  height: 126px;
+  z-index: 3;
+}
+
+/* 第 5 层：标题下方文字 */
+.about-cn {
+  position: absolute;
+  left: 96px;
+  top: 316px;
+  font-size: 38px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.12em;
+  z-index: 3;
+}
+
+.about-dash {
+  position: absolute;
+  left: 98px;
+  top: 384px;
+  width: 36px;
+  height: 2px;
+  background: rgba(190, 178, 228, 0.55);
+  z-index: 3;
+}
+
+.about-intro-title {
+  position: absolute;
+  left: 96px;
+  top: 416px;
+  font-size: 28px;
+  font-weight: 700;
+  color: #b9a6f2;
+  letter-spacing: 0.1em;
+  z-index: 3;
+}
+
+.about-intro-text {
+  position: absolute;
+  left: 96px;
+  top: 476px;
+  font-size: 23px;
+  font-weight: 300;
+  line-height: 1.85;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.04em;
+  z-index: 3;
+}
+
+/* 第 6 层：底部三栏 */
+.about-col {
+  position: absolute;
+  top: 602px;
+  z-index: 3;
+}
+
+.about-col-1 { left: 105px; }
+.about-col-2 { left: 631px; }
+.about-col-3 { left: 1142px; }
+
+.col-num {
+  font-family: 'Montserrat', 'Arial Black', sans-serif;
+  font-style: italic;
+  font-weight: 800;
+  font-size: 22px;
+  color: #7c5ce0;
+  margin-bottom: 14px;
+}
+
+.col-head {
+  font-size: 29px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.08em;
+  margin-bottom: 18px;
+}
+
+.col-text {
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.04em;
+}
+
+/* 栏间细分隔线 */
+.about-vline {
+  position: absolute;
+  top: 606px;
+  width: 1px;
+  height: 158px;
+  background: rgba(255, 255, 255, 0.12);
+  z-index: 2;
+}
+
+.about-vline-1 { left: 596px; }
+.about-vline-2 { left: 1108px; }
+
+/* 第 7 层：页脚 */
+.about-footer {
+  position: absolute;
+  left: 76px;
+  top: 842px;
+  font-family: 'Montserrat', 'Arial Black', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  color: rgba(255, 255, 255, 0.38);
+  z-index: 3;
+}
+
+.about-star {
+  position: absolute;
+  right: 62px;
+  top: 830px;
+  font-size: 22px;
+  color: #cbb7ff;
+  text-shadow: 0 0 12px rgba(203, 183, 255, 0.8);
+  z-index: 3;
+}
+
+.about-bottom-line {
+  position: absolute;
+  left: 0;
+  bottom: 58px;
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.16);
+  z-index: 2;
+}

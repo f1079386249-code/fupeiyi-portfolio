@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>关于我 - Design Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,800;1,900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=20260917">
+  <link rel="stylesheet" href="css/about.css?v=20260917">
+</head>
+<body class="about-page">
+
+  <!-- 1672 × 941 原始画布，JS 等比缩放适配屏幕 -->
+  <div class="about-stage" id="aboutStage">
+
+    <!-- 第 1 层：背景 -->
+    <img class="about-bg" src="images/about/01-background.png" alt="">
+
+    <!-- 第 2 层：人物 + 工作室画面（透明柔边） -->
+    <img class="about-person" src="images/about/02-person-studio.png" alt="">
+
+    <!-- 第 3 层：导航（按参考图排版） -->
+    <header class="about-header">
+      <div class="about-logo">PORTFOLIO</div>
+      <nav class="about-nav">
+        <a href="index.html">首页</a>
+        <a href="about.html" class="active">关于我</a>
+        <a href="work.html">工作经历</a>
+        <a href="projects.html">作品集</a>
+        <a href="contact.html">联系我</a>
+      </nav>
+    </header>
+
+    <!-- 第 4 层：标题（原图 ABOUT ME 素材） -->
+    <img class="about-title" src="images/about/03-about-me.png" alt="ABOUT ME">
+
+    <!-- 第 5 层：标题下方文字 -->
+    <div class="about-cn">关于我</div>
+    <div class="about-dash"></div>
+    <div class="about-intro-title">个人简介</div>
+    <p class="about-intro-text">专注于 UI / 品牌 / 平面设计，擅长将创意转化为清晰、<br>协调的视觉表达。</p>
+
+    <!-- 第 6 层：底部三栏 -->
+    <div class="about-col about-col-1">
+      <div class="col-num">01</div>
+      <div class="col-head">擅长领域</div>
+      <p class="col-text">UI 设计 · 品牌视觉 · 平面物料<br>排版与色彩体系。</p>
+    </div>
+    <div class="about-col about-col-2">
+      <div class="col-num">02</div>
+      <div class="col-head">工具</div>
+      <p class="col-text">Figma · Photoshop<br>Illustrator · After Effects</p>
+    </div>
+    <div class="about-col about-col-3">
+      <div class="col-num">03</div>
+      <div class="col-head">风格关键词</div>
+      <p class="col-text">极简 · 现代 · 有张力<br>注重留白与节奏感。</p>
+    </div>
+    <div class="about-vline about-vline-1"></div>
+    <div class="about-vline about-vline-2"></div>
+
+    <!-- 第 7 层：页脚 -->
+    <div class="about-footer">02&nbsp;&nbsp;/&nbsp;&nbsp;ABOUT</div>
+    <div class="about-star">✦</div>
+    <div class="about-bottom-line"></div>
+
+  </div>
+
+  <script>
+    (function () {
+      var stage = document.getElementById('aboutStage');
+      var W = 1672, H = 941;
+      function fit() {
+        var s = Math.min(window.innerWidth / W, window.innerHeight / H);
+        stage.style.transform = 'translate(-50%, -50%) scale(' + s + ')';
+      }
+      window.addEventListener('resize', fit);
+      fit();
+    })();
+  </script>
+</body>
+</html>

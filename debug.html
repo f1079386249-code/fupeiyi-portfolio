@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>首页像素对照 - Design Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,800;1,900&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { background: #1a1a22; color: #eee; font-family: 'Noto Sans SC', sans-serif; height: 100%; }
+    body { display: flex; flex-direction: column; }
+    #bar { flex: 0 0 auto; padding: 8px 14px; background: #111; border-bottom: 1px solid #333; font-size: 12px; }
+    #bar h4 { color: #9af; font-size: 13px; margin-bottom: 6px; }
+    #bar .row { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+    #bar label { display: flex; align-items: center; gap: 6px; }
+    #bar input[type=range] { width: 120px; }
+    #stageWrap { flex: 1 1 auto; overflow: auto; display: flex; align-items: flex-start; justify-content: center; padding: 10px; }
+    #stage { position: relative; width: 1920px; height: 1080px; flex: 0 0 auto; background: #0a0a12; overflow: hidden; transform-origin: top left; }
+    #stage .layer { position: absolute; inset: 0; }
+    #stage .layer-bg { z-index: 1; }
+    #stage .layer-bg img { width: 1920px; height: 1080px; object-fit: cover; display: block; }
+    #stage .layer-character { z-index: 2; pointer-events: none; }
+    #stage .layer-character img { position: absolute; display: block; }
+    #stage .layer-text { z-index: 3; pointer-events: none; position: absolute; text-align: right; }
+    .hero-title { font-family: 'Montserrat', 'Arial Black', sans-serif; font-style: italic; font-weight: 900; color: #f5f0ff; line-height: 0.88; letter-spacing: -0.01em; text-shadow: 0 6px 40px rgba(0,0,0,0.45); }
+    .hero-subtitle { font-family: 'Noto Sans SC', sans-serif; font-weight: 300; color: rgba(255,255,255,0.9); text-align: right; }
+    .hero-divider { display: flex; align-items: center; justify-content: flex-end; gap: 10px; }
+    .divider-line { display: inline-block; height: 1px; background: rgba(255,255,255,0.5); }
+    .divider-star { font-size: 17px; color: rgba(255,255,255,0.85); }
+    #refOverlay { z-index: 9; pointer-events: none; opacity: 0.5; }
+    #refOverlay img { width: 1920px; height: 1080px; object-fit: cover; }
+    #out { margin-top: 8px; padding: 8px 10px; background: #222; border-radius: 6px; font-family: monospace; font-size: 11px; white-space: pre-wrap; word-break: break-all; color: #9f9; }
+  </style>
+</head>
+<body>
+  <div id="bar">
+    <h4>首页像素对照（固定 1920×1080，叠加半透明参考图）→ 调好后把下方数值发我，我同步进 style.css</h4>
+    <div class="row">
+      <label>参考透明度 <input type="range" id="op" min="0" max="1" step="0.05" value="0.5"></label>
+      <label>人物宽 <input type="range" id="cw" min="500" max="1300" step="5" value="980"></label>
+      <label>人物左 <input type="range" id="cl" min="-200" max="300" step="5" value="-10"></label>
+      <label>人物下 <input type="range" id="cb" min="-300" max="100" step="5" value="-30"></label>
+      <label>文字右 <input type="range" id="tr" min="0" max="400" step="5" value="130"></label>
+      <label>文字上 <input type="range" id="tt" min="0" max="600" step="5" value="305"></label>
+      <label>DESIGN <input type="range" id="td" min="40" max="160" step="2" value="100"></label>
+      <label>PORTFOLIO <input type="range" id="tp" min="60" max="200" step="2" value="150"></label>
+      <label>副标 <input type="range" id="ts" min="14" max="48" step="1" value="31"></label>
+      <label>分隔线 <input type="range" id="tw" min="100" max="500" step="5" value="330"></label>
+    </div>
+    <div id="out"></div>
+  </div>
+
+  <div id="stageWrap">
+    <div id="stage">
+      <div class="layer layer-bg"><img src="file:///C:/Users/10793/Desktop/%E8%83%8C%E6%99%AF.png" alt=""></div>
+      <div class="layer layer-character"><img id="charImg" src="file:///C:/Users/10793/Desktop/%E4%BA%BA%E7%89%A9.png" alt=""></div>
+      <div class="layer layer-text" id="textLayer">
+        <div class="hero-title">
+          <div id="titleDesign">DESIGN</div>
+          <div id="titlePortfolio">PORTFOLIO</div>
+        </div>
+        <div class="hero-subtitle" id="subtitle">UI / 品牌 / 平面设计</div>
+        <div class="hero-divider">
+          <span class="divider-line" id="dividerLine"></span>
+          <span class="divider-star">✦</span>
+        </div>
+      </div>
+      <div id="refOverlay" class="layer"><img src="file:///C:/Users/10793/Desktop/Codex%20%E5%9B%BE%E5%83%8F%202026%E5%B9%B48%E6%9C%8819%E6%97%A5%2018_45_28.png" alt=""></div>
+    </div>
+  </div>
+
+  <script>
+    const ids = ['op','cw','cl','cb','tr','tt','td','tp','ts','tw'];
+    const el = {};
+    ids.forEach(id => el[id] = document.getElementById(id));
+
+    function pct(v, total) { return (v / total * 100).toFixed(2); }
+
+    function update() {
+      const op = +el.op.value, cw = +el.cw.value, cl = +el.cl.value, cb = +el.cb.value,
+            tr = +el.tr.value, tt = +el.tt.value, td = +el.td.value, tp = +el.tp.value,
+            ts = +el.ts.value, tw = +el.tw.value;
+
+      document.getElementById('refOverlay').style.opacity = op;
+
+      const char = document.getElementById('charImg');
+      char.style.width = cw + 'px';
+      char.style.left = cl + 'px';
+      char.style.bottom = cb + 'px';
+
+      const text = document.getElementById('textLayer');
+      text.style.right = tr + 'px';
+      text.style.top = tt + 'px';
+      document.getElementById('titleDesign').style.fontSize = td + 'px';
+      document.getElementById('titlePortfolio').style.fontSize = tp + 'px';
+      document.getElementById('subtitle').style.fontSize = ts + 'px';
+      document.getElementById('dividerLine').style.width = tw + 'px';
+
+      el.out.textContent =
+`/* 同步到 css/style.css —— 首页 Hero 基准（1920×1080） */
+.home-hero .layer-character img {
+  width: clamp(380px, ${pct(cw,1920)}vw, 1100px);
+  left: clamp(-20px, ${pct(cl,1920)}vw, 0px);
+  bottom: ${pct(cb,1080)}vh;
+}
+.home-hero .layer-text {
+  right: ${pct(tr,1920)}vw;
+  top: ${pct(tt,1080)}vh;
+}
+.title-design { font-size: clamp(44px, ${pct(td,1920)}vw, 100px); }
+.title-portfolio { font-size: clamp(68px, ${pct(tp,1920)}vw, 150px); }
+.hero-subtitle { font-size: clamp(15px, ${pct(ts,1920)}vw, 31px); }
+.divider-line { width: clamp(180px, ${pct(tw,1920)}vw, 330px); }`;
+    }
+
+    function fit() {
+      const wrap = document.getElementById('stageWrap');
+      const stage = document.getElementById('stage');
+      const s = Math.min((wrap.clientWidth - 20) / 1920, (wrap.clientHeight - 20) / 1080);
+      stage.style.transform = 'scale(' + s + ')';
+    }
+
+    ids.forEach(id => el[id].addEventListener('input', update));
+    window.addEventListener('resize', fit);
+    update();
+    fit();
+  </script>
+</body>
+</html>

@@ -1,0 +1,375 @@
+/* ========== 工作经历：936 宽原始画布，宽度等比缩放（铺满视口宽度） ========== */
+/* 画布基准 936 × ~2000，装饰 PNG 坐标来自 layout.json，第四段经历画布向下加长 */
+
+#page-work {
+  background: #070c1a;
+}
+
+.exp-wrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #070c1a;
+}
+
+.exp-stage {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 936px;
+  height: 2670px;
+  transform-origin: top center;
+  transform: translateX(-50%);
+  background: #070c1a;
+  font-family: 'Noto Sans SC', 'Microsoft YaHei', sans-serif;
+}
+
+.exp-stage img {
+  position: absolute;
+  display: block;
+}
+
+/* ---------- 顶部 Hero ---------- */
+.exp-hero-photo {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 470px;
+  height: 300px;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.exp-hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* 照片向左、向下渐隐进背景 */
+.exp-hero-photo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, #070c1a 0%, rgba(7, 12, 26, 0) 45%),
+    linear-gradient(to bottom, rgba(7, 12, 26, 0.2) 0%, rgba(7, 12, 26, 0) 35%, #070c1a 100%);
+  z-index: 2;
+}
+
+.exp-title {
+  position: absolute;
+  left: 40px;
+  top: 108px;
+  font-family: 'Montserrat', 'Arial Black', sans-serif;
+  font-style: italic;
+  font-weight: 900;
+  font-size: 76px;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  z-index: 3;
+  text-shadow: 0 6px 30px rgba(0, 0, 0, 0.5);
+}
+
+.exp-cn {
+  position: absolute;
+  left: 44px;
+  top: 202px;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #ffffff;
+  z-index: 3;
+}
+
+.exp-eyebrow {
+  position: absolute;
+  left: 44px;
+  top: 272px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: 'Montserrat', sans-serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  color: rgba(255, 255, 255, 0.55);
+  z-index: 3;
+}
+
+.exp-eyebrow::before {
+  content: '';
+  width: 34px;
+  height: 1px;
+  background: rgba(185, 166, 242, 0.6);
+}
+
+.exp-arrow {
+  position: absolute;
+  left: 46px;
+  top: 322px;
+  font-size: 26px;
+  color: #b9a6f2;
+  z-index: 3;
+}
+
+/* ---------- 中央时间线 ---------- */
+.exp-line {
+  position: absolute;
+  left: 493px;
+  top: 420px;
+  width: 1px;
+  height: 1970px;
+  background: rgba(255, 255, 255, 0.12);
+  z-index: 1;
+}
+
+.exp-dot {
+  position: absolute;
+  left: 486px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 2px solid #8b6cf0;
+  background: #070c1a;
+  box-shadow: 0 0 12px rgba(139, 108, 240, 0.7);
+  z-index: 4;
+}
+
+/* ---------- 经历卡片 ---------- */
+.exp-card {
+  position: absolute;
+  width: 400px;
+  z-index: 3;
+}
+
+.exp-card-left  { left: 40px; }
+.exp-card-right { left: 520px; width: 380px; }
+
+.exp-num {
+  font-family: 'Montserrat', sans-serif;
+  font-style: italic;
+  font-weight: 800;
+  font-size: 24px;
+  color: #8b6cf0;
+  margin-bottom: 10px;
+}
+
+.exp-years {
+  font-family: 'Montserrat', 'Arial Black', sans-serif;
+  font-style: italic;
+  font-weight: 900;
+  font-size: 42px;
+  line-height: 1.05;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+  margin-bottom: 14px;
+}
+
+.exp-company {
+  font-size: 21px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.05em;
+  margin-bottom: 14px;
+}
+
+.exp-desc {
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.85;
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.03em;
+  margin-bottom: 18px;
+}
+
+.exp-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.exp-tag {
+  display: inline-block;
+  padding: 6px 16px;
+  border: 1px solid rgba(139, 108, 240, 0.55);
+  border-radius: 999px;
+  background: rgba(124, 92, 224, 0.1);
+  font-size: 13px;
+  color: #c3b2f5;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+/* 四段经历的纵向位置（装饰图 x/宽高来自 layout.json，y 随卡片重排对齐） */
+/* 01 右上装饰 y=408（与 layout.json 一致） */
+.exp-row-1 { top: 430px; }
+.exp-dot-1 { top: 448px; }
+
+/* 02 左中装饰，随第二排下移 */
+.exp-row-2 { top: 860px; }
+.exp-dot-2 { top: 878px; }
+
+/* 03 右下装饰，随第三排下移 */
+.exp-row-3 { top: 1320px; }
+.exp-dot-3 { top: 1338px; }
+
+/* 04 第四段（右列），2024.08 — 2026.09 较长，稍微缩小避免换行 */
+.exp-row-4 { top: 1790px; }
+.exp-dot-4 { top: 1808px; }
+.exp-row-4 .exp-years { font-size: 36px; }
+
+/* ---------- 底部：下一章 SELECTED WORKS ---------- */
+.exp-divider {
+  position: absolute;
+  left: 40px;
+  right: 40px;
+  top: 2390px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.16);
+  z-index: 2;
+}
+
+.exp-divider-star {
+  position: absolute;
+  right: 36px;
+  top: 2380px;
+  font-size: 20px;
+  color: #cbb7ff;
+  text-shadow: 0 0 12px rgba(203, 183, 255, 0.8);
+  z-index: 3;
+}
+
+.exp-next-label {
+  position: absolute;
+  left: 44px;
+  top: 2420px;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.2em;
+  z-index: 3;
+}
+
+.exp-next-title {
+  position: absolute;
+  left: 40px;
+  top: 2450px;
+  font-family: 'Montserrat', 'Arial Black', sans-serif;
+  font-style: italic;
+  font-weight: 900;
+  font-size: 58px;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+  z-index: 3;
+  text-shadow: 0 6px 30px rgba(0, 0, 0, 0.5);
+}
+
+.exp-next-link {
+  position: absolute;
+  left: 44px;
+  top: 2538px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 17px;
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  z-index: 3;
+  transition: color 0.3s;
+}
+
+.exp-next-link:hover {
+  color: #c3b2f5;
+}
+
+.exp-next-link .arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgba(139, 108, 240, 0.6);
+  border-radius: 50%;
+  font-size: 15px;
+  color: #c3b2f5;
+}
+
+/* 04-more-than-design 艺术字：x/宽高来自 layout.json，y 与 SELECTED WORKS 对齐 */
+.exp-art {
+  left: 780px;
+  top: 2450px;
+  width: 119px;
+  height: 145px;
+  z-index: 3;
+}
+
+/* ---------- 装饰 PNG（x/宽高为 layout.json 原值，y 随卡片对齐） ---------- */
+.decor-1 { left: 535px; top: 408px;  width: 344px; height: 312px; z-index: 2; }
+.decor-2 { left: 94px;  top: 830px;  width: 335px; height: 324px; z-index: 2; }
+.decor-3 { left: 554px; top: 1283px; width: 309px; height: 341px; z-index: 2; }
+/* 第四段左侧装饰：复制第三段右侧那张蓝玻璃几何图，填满左列空白 */
+.decor-4 { left: 96px;  top: 1876px; width: 309px; height: 341px; z-index: 2; opacity: 0.95; }
+
+/* ---------- 移动端（≤720px）：脱离等比画布，改为纵向流式布局 ---------- */
+@media (max-width: 720px) {
+  .exp-wrap { height: auto !important; }
+
+  .exp-stage {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    transform: none !important;
+    padding: 116px 22px 56px;
+    box-sizing: border-box;
+  }
+
+  .exp-stage > * { position: static !important; }
+
+  /* 顶部照片改为全宽横幅 */
+  .exp-hero-photo {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 230px;
+  }
+
+  .exp-hero-photo::before {
+    background: linear-gradient(to bottom,
+      rgba(7, 12, 26, 0.1) 0%,
+      rgba(7, 12, 26, 0) 40%,
+      #070c1a 96%);
+  }
+
+  /* 时间线与装饰在窄屏下隐藏，内容单列铺满 */
+  .exp-line,
+  .exp-dot,
+  .decor-1,
+  .decor-2,
+  .decor-3,
+  .decor-4,
+  .exp-art,
+  .exp-divider-star { display: none; }
+
+  .exp-title { font-size: 46px; margin: 128px 0 0; }
+  .exp-cn    { font-size: 22px; margin-top: 8px; }
+  .exp-eyebrow { margin-top: 16px; }
+  .exp-arrow { margin: 8px 0 30px 2px; }
+
+  .exp-card { width: 100% !important; margin: 0 0 46px; }
+  .exp-card-right { width: 100% !important; }
+  .exp-years { font-size: 32px !important; }
+  .exp-row-2 .exp-years { font-size: 27px !important; }
+  .exp-company { font-size: 18px; }
+  .exp-desc { font-size: 14px; }
+
+  .exp-divider { margin-top: 6px; }
+  .exp-next-label { margin-top: 26px; }
+  .exp-next-title { font-size: 34px; margin-top: 8px; }
+  .exp-next-link { margin-top: 14px; }
+}
